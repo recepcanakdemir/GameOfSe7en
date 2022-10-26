@@ -6,6 +6,7 @@ public class BallShooter : MonoBehaviour
 {
     [SerializeField] float power = 10.0f;
     [SerializeField] bool isPlayable = true;
+    [SerializeField] float pointOfZ = 15.0f;
     public Rigidbody2D ballRb;
     TrajectoryLine tl;
 
@@ -35,14 +36,14 @@ public class BallShooter : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-            startPoint.z = 15.0f;
+            startPoint.z = pointOfZ;
             Debug.Log(startPoint);
         }
 
         if (Input.GetMouseButton(0))
         {
             Vector3 currentPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-            currentPoint.z = 15.0f;
+            currentPoint.z = pointOfZ;
 
             tl.RenderLine(startPoint, currentPoint);
         }
@@ -50,7 +51,7 @@ public class BallShooter : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
-            endPoint.z = 15.0f;
+            endPoint.z = pointOfZ;
             Debug.Log(endPoint);
 
             force = new Vector2(Mathf.Clamp(startPoint.x - endPoint.x, minPower.x, maxPower.x), Mathf.Clamp(startPoint.y - endPoint.y, minPower.y, maxPower.y));
