@@ -6,9 +6,10 @@ using UnityEngine.UI;
 
 public class Scorer : MonoBehaviour
 {
-    int score = 0;
+    public int score = 0;
     public TextMeshProUGUI scoreText;
     public GameObject ball;
+    public bool isGameFinished = false;
     private void Update()
     {
         scoreText.text =score.ToString();
@@ -19,6 +20,13 @@ public class Scorer : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             score++;
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Boundary1" || collision.gameObject.tag== "Boundary2")
+        {
+            isGameFinished = true;
         }
     }
 }

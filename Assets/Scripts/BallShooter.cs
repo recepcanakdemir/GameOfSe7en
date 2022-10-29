@@ -37,7 +37,7 @@ public class BallShooter : MonoBehaviour
         {
             startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             startPoint.z = pointOfZ;
-            Debug.Log(startPoint);
+           // Debug.Log(startPoint);
         }
 
         if (Input.GetMouseButton(0))

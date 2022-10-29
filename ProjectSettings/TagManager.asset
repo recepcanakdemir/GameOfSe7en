@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Ball
   - Instruction
+  - Boundary1
+  - Boundary2
   layers:
   - Default
   - TransparentFX
