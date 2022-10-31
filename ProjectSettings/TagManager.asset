@@ -9,6 +9,7 @@ TagManager:
   - Instruction
   - Boundary1
   - Boundary2
+  - nextLevelButton
   layers:
   - Default
   - TransparentFX

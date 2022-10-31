@@ -11,12 +11,15 @@ public class GameManager : MonoBehaviour
     private GameObject ball;
     private Scorer ballScorer;
     public TextMeshProUGUI instruction;
+    public TextMeshProUGUI levelCompletedText;
     public Button restartButton;
+    public Button nextLevelButton;
     [SerializeField] int targetNumber;
 
     private void Awake()
     {
         ballScorer = GameObject.Find("Ball").GetComponent<Scorer>();
+        
     }
     private void Start()
     {
@@ -33,22 +36,29 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (ballScorer.isGameFinished == true)
-        {
-            if (targetNumber == ballScorer.score)
-            {
-                Debug.Log("You won");
-            }
-        }
+        GameController();
             
     }
 
 
     public void Restart()
-    {
+    {  
         Scene scene;
         scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+    public void GameController()
+    {
+        if (ballScorer.isGameFinished == true)
+        {
+            if (targetNumber == ballScorer.score)
+            {
+                Debug.Log("You won");
+                nextLevelButton.interactable = true;
+                levelCompletedText.gameObject.SetActive(true);
+                
+            }
+        }
     }
     
 }
