@@ -30,9 +30,20 @@ public class GameManager : MonoBehaviour
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (currentScene == 2)
-            targetNumber = 1;
+            targetNumber = currentScene-1;
+        if (currentScene == 3)
+            targetNumber = currentScene - 1;
+        if (currentScene == 4)
+            targetNumber = currentScene - 1;
+        if (currentScene == 5)
+            targetNumber = currentScene - 1;
+        if (currentScene == 6)
+            targetNumber = currentScene - 1;
+        if (currentScene == 7)
+            targetNumber = currentScene - 1;
+        if (currentScene == 8)
+            targetNumber = currentScene - 1;
 
-       
     }
     private void Update()
     {
