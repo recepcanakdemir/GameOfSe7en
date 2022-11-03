@@ -276,5 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 919523a8fe59591408ab44c682b57017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0
   scoreText: {fileID: 0}
   ball: {fileID: 8579215508887974979}
+  isGameFinished: 0
