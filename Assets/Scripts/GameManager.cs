@@ -12,9 +12,11 @@ public class GameManager : MonoBehaviour
     private Scorer ballScorer;
     public TextMeshProUGUI instruction;
     public TextMeshProUGUI levelCompletedText;
+    public TextMeshProUGUI tryAgainText;
     public Button restartButton;
     public Button nextLevelButton;
     [SerializeField] int targetNumber;
+    [SerializeField] int blockTargetNumber;
 
     private void Awake()
     {
@@ -43,6 +45,11 @@ public class GameManager : MonoBehaviour
             targetNumber = currentScene - 1;
         if (currentScene == 8)
             targetNumber = currentScene - 1;
+        if (currentScene == 9)
+        {
+            targetNumber = 0;
+            blockTargetNumber = 1;
+        }
 
     }
     private void Update()
@@ -57,19 +64,42 @@ public class GameManager : MonoBehaviour
         Scene scene;
         scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+        tryAgainText.gameObject.SetActive(false);
     }
     public void GameController()
     {
-        if (ballScorer.isGameFinished == true)
+        if (ballScorer.isGameFinished == true || ballScorer.isGameCompleted == false)
         {
-            if (targetNumber == ballScorer.score)
+            if (targetNumber == ballScorer.scoreGround && SceneManager.GetActiveScene().buildIndex < 8)
             {
                 Debug.Log("You won");
                 nextLevelButton.interactable = true;
                 levelCompletedText.gameObject.SetActive(true);
-                
+
+            }
+            else if(SceneManager.GetActiveScene().buildIndex < 8)
+            {
+                tryAgainText.gameObject.SetActive(true);
+                Debug.Log("try again1");
+            }
+
+            if (SceneManager.GetActiveScene().buildIndex > 8 && targetNumber==ballScorer.scoreGround && blockTargetNumber==ballScorer.scoreBlock && ballScorer.isGameCompleted == true )
+            {
+                Debug.Log("You won");
+                nextLevelButton.interactable = true;
+                levelCompletedText.gameObject.SetActive(true);
+            }
+            else if (ballScorer.isGameCompleted == false)
+            {
+                tryAgainText.gameObject.SetActive(true);
+            }
+            else
+            {
+               tryAgainText.gameObject.SetActive(true);
+                Debug.Log("try again2");
             }
         }
+        
     }
     
 }
