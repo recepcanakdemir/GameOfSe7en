@@ -13,6 +13,8 @@ TagManager:
   - movingBlock
   - Boundary3
   - Boundary4
+  - movingBlockYellow
+  - yellowMovingBlock
   layers:
   - Default
   - TransparentFX
