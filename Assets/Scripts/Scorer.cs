@@ -9,8 +9,11 @@ public class Scorer : MonoBehaviour
 {
     public int scoreGround = 0;
     public int scoreBlock = 0;
+    public int yellowBlockScore = 0;
+
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI blockScoreText;
+    public TextMeshProUGUI yellowBlockScoreText;
     public GameObject ball;
     public bool isGameFinished = false;
     public bool isGameCompleted = true;
@@ -22,6 +25,8 @@ public class Scorer : MonoBehaviour
         scoreText.text = scoreGround.ToString();
         if(SceneManager.GetActiveScene().buildIndex > 8)
         blockScoreText.text = scoreBlock.ToString();
+        if (SceneManager.GetActiveScene().buildIndex > 11)
+        yellowBlockScoreText.text = yellowBlockScore.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -47,6 +52,10 @@ public class Scorer : MonoBehaviour
         if (collision.gameObject.tag == "movingBlock" && SceneManager.GetActiveScene().buildIndex > 8)
         {
             scoreBlock++;
+        }
+        if(collision.gameObject.tag == "yellowMovingBlock" && SceneManager.GetActiveScene().buildIndex>11)
+        {
+            yellowBlockScore++;
         }
     }
 

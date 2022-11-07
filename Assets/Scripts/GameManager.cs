@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private GameObject ball;
+    [SerializeField] Rigidbody2D ballRb;
     private Scorer ballScorer;
     public TextMeshProUGUI instruction;
     public TextMeshProUGUI levelCompletedText;
@@ -17,10 +18,12 @@ public class GameManager : MonoBehaviour
     public Button nextLevelButton;
     [SerializeField] int targetNumber;
     [SerializeField] int blockTargetNumber;
+    [SerializeField] int yellowBlockTargetNumber;
 
     private void Awake()
     {
         ballScorer = GameObject.Find("Ball").GetComponent<Scorer>();
+        ballRb = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         
     }
     private void Start()
@@ -31,30 +34,62 @@ public class GameManager : MonoBehaviour
         instruction.gameObject.SetActive(true);
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
-        if (currentScene == 2)
-            targetNumber = currentScene-1;
-        if (currentScene == 3)
-            targetNumber = currentScene - 1;
-        if (currentScene == 4)
-            targetNumber = currentScene - 1;
-        if (currentScene == 5)
-            targetNumber = currentScene - 1;
-        if (currentScene == 6)
-            targetNumber = currentScene - 1;
-        if (currentScene == 7)
-            targetNumber = currentScene - 1;
-        if (currentScene == 8)
-            targetNumber = currentScene - 1;
-        if (currentScene == 9)
+        //level scene
+        switch (currentScene)
         {
-            targetNumber = 0;
-            blockTargetNumber = 1;
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                targetNumber = currentScene - 1;
+                break;
+            case 3:
+                targetNumber = currentScene - 1;
+                break;
+            case 4:
+                targetNumber = currentScene - 1;
+                break;
+            case 5:
+                targetNumber = currentScene - 1;
+                break;
+            case 6:
+                targetNumber = currentScene - 1;
+                break;
+            case 7:
+                targetNumber = currentScene - 1;
+                break;
+            case 8:
+                targetNumber = currentScene - 1;
+                break;
+            case 9:
+                targetNumber = 0;
+                blockTargetNumber = 1;
+                break;
+            case 10:
+                targetNumber = 1;
+                blockTargetNumber = 1;
+                break;
+            case 11:
+                targetNumber = 2;
+                blockTargetNumber = 1;
+                break;
+            case 12:
+                targetNumber = 0;
+                blockTargetNumber = 0;
+                yellowBlockTargetNumber = 1;
+                break;
+
         }
+
+
 
     }
     private void Update()
-    {
-        GameController();
+    {   if (SceneManager.GetActiveScene().buildIndex < 12)
+            GameController();
+        else if (SceneManager.GetActiveScene().buildIndex >= 12)
+            GameController2();
             
     }
 
@@ -64,42 +99,63 @@ public class GameManager : MonoBehaviour
         Scene scene;
         scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+        //if (SceneManager.GetActiveScene().buildIndex > 8) 
         tryAgainText.gameObject.SetActive(false);
     }
     public void GameController()
     {
         if (ballScorer.isGameFinished == true || ballScorer.isGameCompleted == false)
         {
-            if (targetNumber == ballScorer.scoreGround && SceneManager.GetActiveScene().buildIndex < 8)
+            if (targetNumber == ballScorer.scoreGround && SceneManager.GetActiveScene().buildIndex <= 8)
             {
-                Debug.Log("You won");
-                nextLevelButton.interactable = true;
-                levelCompletedText.gameObject.SetActive(true);
-
+                YouWon();
             }
-            else if(SceneManager.GetActiveScene().buildIndex < 8)
+            else if (SceneManager.GetActiveScene().buildIndex < 8)
             {
-                tryAgainText.gameObject.SetActive(true);
-                Debug.Log("try again1");
+                YouLost();
+                
             }
-
-            if (SceneManager.GetActiveScene().buildIndex > 8 && targetNumber==ballScorer.scoreGround && blockTargetNumber==ballScorer.scoreBlock && ballScorer.isGameCompleted == true )
+            if (SceneManager.GetActiveScene().buildIndex > 8 && targetNumber == ballScorer.scoreGround && blockTargetNumber == ballScorer.scoreBlock && ballScorer.isGameCompleted == true)
             {
-                Debug.Log("You won");
-                nextLevelButton.interactable = true;
-                levelCompletedText.gameObject.SetActive(true);
+                YouWon();
             }
-            else if (ballScorer.isGameCompleted == false)
+            else if (ballScorer.isGameCompleted == false )
             {
-                tryAgainText.gameObject.SetActive(true);
+                YouLost();
             }
-            else
+            else if (levelCompletedText.gameObject.activeSelf == false)
             {
-               tryAgainText.gameObject.SetActive(true);
-                Debug.Log("try again2");
+                YouLost();
             }
+            
         }
-        
+        if (targetNumber < ballScorer.scoreGround || blockTargetNumber < ballScorer.scoreBlock)
+        {
+            YouLost();
+            ball.gameObject.SetActive(false);
+        }
     }
     
+    public void YouLost()
+    {
+        Debug.Log("You Lost Try Again");
+        tryAgainText.gameObject.SetActive(true);
+    }
+    public void YouWon()
+    {
+        Debug.Log("You Won Skip to Next Level");
+        levelCompletedText.gameObject.SetActive(true);
+        nextLevelButton.interactable = true;
+    }
+
+    public void GameController2()
+    {
+        if(ballScorer.isGameFinished == true || ballScorer.isGameCompleted == false)
+        {
+            if(targetNumber == ballScorer.scoreGround && blockTargetNumber == ballScorer.scoreBlock && yellowBlockTargetNumber == ballScorer.yellowBlockScore)
+            {
+                YouWon();
+            }
+        }
+    }
 }
