@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] int targetNumber;
     [SerializeField] int blockTargetNumber;
     [SerializeField] int yellowBlockTargetNumber;
+    public bool isTargetPassed = false;
 
     private void Awake()
     {
@@ -79,7 +80,51 @@ public class GameManager : MonoBehaviour
                 blockTargetNumber = 0;
                 yellowBlockTargetNumber = 1;
                 break;
-
+            case 13:
+                targetNumber = 0;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 1;
+                break;
+            case 14:
+                targetNumber = 2;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 0;
+                break;
+            case 15:
+                targetNumber = 1;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 0;
+                break;
+            case 16:
+                targetNumber = 3;
+                blockTargetNumber = 0;
+                yellowBlockTargetNumber = 0;
+                break;
+            case 17:
+                targetNumber = 2;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 1;
+                break;
+            case 18:
+                targetNumber = 1;
+                blockTargetNumber = 0;
+                yellowBlockTargetNumber = 1;
+                break;
+            case 19:
+                targetNumber = 1;
+                blockTargetNumber = 0;
+                yellowBlockTargetNumber = 0;
+                break;
+            case 20:
+                targetNumber = 0;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 1;
+                break;
+            case 21:
+                targetNumber = 1;
+                blockTargetNumber = 1;
+                yellowBlockTargetNumber = 1;
+                break;
         }
 
 
@@ -132,7 +177,8 @@ public class GameManager : MonoBehaviour
         if (targetNumber < ballScorer.scoreGround || blockTargetNumber < ballScorer.scoreBlock)
         {
             YouLost();
-            ball.gameObject.SetActive(false);
+            isTargetPassed = true;
+            //ball.gameObject.SetActive(false);
         }
     }
     
@@ -156,6 +202,16 @@ public class GameManager : MonoBehaviour
             {
                 YouWon();
             }
+            else 
+            {
+                YouLost();
+            }
         }
+       /* else if(targetNumber < ballScorer.scoreGround || blockTargetNumber < ballScorer.scoreBlock || yellowBlockTargetNumber < ballScorer.yellowBlockScore)
+        {
+            YouLost();
+            isTargetPassed = true;
+        }*/
+       
     }
 }
