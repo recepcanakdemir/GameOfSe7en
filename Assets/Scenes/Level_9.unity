@@ -1587,6 +1587,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MovingBlock
       objectReference: {fileID: 0}
+    - target: {fileID: 7995487729054178712, guid: 1bd5f1a8f8f62204db0010b916b61547, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1506260806}
     - target: {fileID: 7995487729054178714, guid: 1bd5f1a8f8f62204db0010b916b61547, type: 3}
       propertyPath: m_RootOrder
       value: 13

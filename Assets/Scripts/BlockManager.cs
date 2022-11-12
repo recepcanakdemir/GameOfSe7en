@@ -15,9 +15,11 @@ public class BlockManager : MonoBehaviour
 
     [SerializeField] private Transform currentPoint;
     [SerializeField] private GameObject block;
+    [SerializeField] private GameManager gameManager;
     private void Start()
     {
         //startPos = block.transform.position;
+        
         ballScorer = GameObject.Find("Ball").GetComponent<Scorer>();
         startPos = firstStartingPos;
     }
@@ -25,8 +27,9 @@ public class BlockManager : MonoBehaviour
     {
         if (ballScorer.isGameFinished == false) 
         MoveRightToLeft();
-        if (ballScorer.isGameCompleted == false)
+        if (ballScorer.isGameCompleted == false || gameManager.isTargetPassed==true)
             speed = 0f;
+
     }
     void MoveRightToLeft()
     {

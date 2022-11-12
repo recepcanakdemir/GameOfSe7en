@@ -10,10 +10,12 @@ public class Scorer : MonoBehaviour
     public int scoreGround = 0;
     public int scoreBlock = 0;
     public int yellowBlockScore = 0;
+  //  public int greenBlockScore = 0;
 
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI blockScoreText;
     public TextMeshProUGUI yellowBlockScoreText;
+    //public TextMeshProUGUI greenBlockScoreText;
     public GameObject ball;
     public bool isGameFinished = false;
     public bool isGameCompleted = true;
@@ -27,6 +29,8 @@ public class Scorer : MonoBehaviour
         blockScoreText.text = scoreBlock.ToString();
         if (SceneManager.GetActiveScene().buildIndex > 11)
         yellowBlockScoreText.text = yellowBlockScore.ToString();
+       /* if (SceneManager.GetActiveScene().buildIndex == 19)
+            greenBlockScoreText.text = scoreBlock.ToString();*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -57,6 +61,10 @@ public class Scorer : MonoBehaviour
         {
             yellowBlockScore++;
         }
+        /*if (collision.gameObject.tag == "StairTopCollider" && SceneManager.GetActiveScene().buildIndex == 19)
+        {
+            greenBlockScore++;
+        }*/
     }
 
 
