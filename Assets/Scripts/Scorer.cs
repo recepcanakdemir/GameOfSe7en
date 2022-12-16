@@ -39,6 +39,15 @@ public class Scorer : MonoBehaviour
         {
             scoreGround++;
         }
+        if (collision.gameObject.tag == "movingBlock" && SceneManager.GetActiveScene().buildIndex > 8)
+        {
+            scoreBlock++;
+        }
+        if (collision.gameObject.tag == "yellowMovingBlock" && SceneManager.GetActiveScene().buildIndex > 11)
+        {
+            yellowBlockScore++;
+        }
+
     }
     
     private void OnTriggerEnter2D(Collider2D collision)
@@ -53,14 +62,8 @@ public class Scorer : MonoBehaviour
         {
             isGameCompleted = false;
         }
-        if (collision.gameObject.tag == "movingBlock" && SceneManager.GetActiveScene().buildIndex > 8)
-        {
-            scoreBlock++;
-        }
-        if(collision.gameObject.tag == "yellowMovingBlock" && SceneManager.GetActiveScene().buildIndex>11)
-        {
-            yellowBlockScore++;
-        }
+
+
         /*if (collision.gameObject.tag == "StairTopCollider" && SceneManager.GetActiveScene().buildIndex == 19)
         {
             greenBlockScore++;
