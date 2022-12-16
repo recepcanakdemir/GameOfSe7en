@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+       // Time.timeScale = 1;
         ballScorer = GameObject.Find("Ball").GetComponent<Scorer>();
         ballRb = GameObject.Find("Ball").GetComponent<Rigidbody2D>();
         
@@ -176,7 +177,7 @@ public class GameManager : MonoBehaviour
         }
         if (targetNumber < ballScorer.scoreGround || blockTargetNumber < ballScorer.scoreBlock)
         {
-            YouLost();
+           YouLost();
             isTargetPassed = true;
             //ball.gameObject.SetActive(false);
         }
@@ -186,12 +187,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You Lost Try Again");
         tryAgainText.gameObject.SetActive(true);
+       // Time.timeScale = 0;
     }
     public void YouWon()
     {
         Debug.Log("You Won Skip to Next Level");
         levelCompletedText.gameObject.SetActive(true);
         nextLevelButton.interactable = true;
+        nextLevelButton.gameObject.SetActive(true);
     }
 
     public void GameController2()
