@@ -9,7 +9,18 @@ public class SceneLoader : MonoBehaviour
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(currentScene+1);
     }
-
+    /*  public void LoadOptionsMenu()
+      {
+          SceneManager.LoadScene()
+      }*/
+    public void LoadLevelsScene()
+    {
+        SceneManager.LoadScene(1);
+    }
+    public void LoadLevel1()
+    {
+        SceneManager.LoadScene(2);
+    }
     public void LoadLevel2()
     {
         SceneManager.LoadScene(3);
@@ -33,6 +44,58 @@ public class SceneLoader : MonoBehaviour
     public void LoadLevel7()
     {
         SceneManager.LoadScene(8);
+    }
+    public void LoadLevel8()
+    {
+        SceneManager.LoadScene(9);
+    }
+    public void LoadLevel9()
+    {
+        SceneManager.LoadScene(10);
+    }
+    public void LoadLevel10()
+    {
+        SceneManager.LoadScene(11);
+    }
+    public void LoadLevel11()
+    {
+        SceneManager.LoadScene(12);
+    }
+    public void LoadLevel12()
+    {
+        SceneManager.LoadScene(13);
+    }
+    public void LoadLevel13()
+    {
+        SceneManager.LoadScene(14);
+    }
+    public void LoadLevel14()
+    {
+        SceneManager.LoadScene(15);
+    }
+    public void LoadLevel15()
+    {
+        SceneManager.LoadScene(16);
+    }
+    public void LoadLevel16()
+    {
+        SceneManager.LoadScene(17);
+    }
+    public void LoadLevel17()
+    {
+        SceneManager.LoadScene(18);
+    }
+    public void LoadLevel18()
+    {
+        SceneManager.LoadScene(19);
+    }
+    public void LoadLevel19()
+    {
+        SceneManager.LoadScene(20);
+    }
+    public void LoadLevel20()
+    {
+        SceneManager.LoadScene(21);
     }
     public void LoadStartScene()
     {

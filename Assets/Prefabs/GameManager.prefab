@@ -51,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d5c71a1572bb14b9c177a05d9c95c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ballRb: {fileID: 0}
   instruction: {fileID: 0}
   levelCompletedText: {fileID: 0}
   tryAgainText: {fileID: 0}
@@ -58,6 +59,8 @@ MonoBehaviour:
   nextLevelButton: {fileID: 0}
   targetNumber: 0
   blockTargetNumber: 0
+  yellowBlockTargetNumber: 0
+  isTargetPassed: 0
 --- !u!222 &5839942985790386473
 CanvasRenderer:
   m_ObjectHideFlags: 0

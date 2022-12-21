@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BallShooter : MonoBehaviour
 {
     [SerializeField] float power = 10.0f;
     [SerializeField] bool isPlayable = true;
     [SerializeField] float pointOfZ = 15.0f;
+    [SerializeField] TextMeshProUGUI instructionText;
     public Rigidbody2D ballRb;
     TrajectoryLine tl;
+    
 
     public Vector2 maxPower;
     public Vector2 minPower;
@@ -22,6 +27,7 @@ public class BallShooter : MonoBehaviour
     {
         cam = Camera.main;
         tl = GetComponent<TrajectoryLine>();
+     //   instructionText = GameObject.Find("Instruction").GetComponent<TextMeshProUGUI>();
     }
 
     private void Update()
@@ -37,6 +43,7 @@ public class BallShooter : MonoBehaviour
         {
             startPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             startPoint.z = pointOfZ;
+
            // Debug.Log(startPoint);
         }
 
@@ -50,6 +57,7 @@ public class BallShooter : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            instructionText.gameObject.SetActive(false);
             endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
             endPoint.z = pointOfZ;
             Debug.Log(endPoint);
@@ -58,6 +66,8 @@ public class BallShooter : MonoBehaviour
             ballRb.AddForce(force * power, ForceMode2D.Impulse);
             tl.EndLine();
             isPlayable = false;
+            
+            
         }
         
     }
