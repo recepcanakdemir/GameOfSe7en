@@ -61,7 +61,9 @@ public class Scorer : MonoBehaviour
         if(collision.gameObject.tag == "Boundary3" || collision.gameObject.tag == "Boundary4")
         {
             isGameCompleted = false;
+            gameObject.SetActive(false);
         }
+   
 
 
         /*if (collision.gameObject.tag == "StairTopCollider" && SceneManager.GetActiveScene().buildIndex == 19)

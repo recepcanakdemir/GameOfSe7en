@@ -16,6 +16,7 @@ TagManager:
   - movingBlockYellow
   - yellowMovingBlock
   - Game Manager
+  - TopBoundary
   layers:
   - Default
   - TransparentFX
